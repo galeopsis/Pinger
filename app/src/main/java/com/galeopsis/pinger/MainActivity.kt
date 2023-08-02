@@ -54,10 +54,10 @@ import java.net.InetSocketAddress
 import java.net.Socket
 import kotlin.system.exitProcess
 
-var ipAddressToCheck = MY_HOST.substringBefore(":")
-var portToCheck = MY_HOST.substringAfter(":").toInt()
-//var ipAddressToCheck = "8.8.8.8"
-//var portToCheck = 53
+//var ipAddressToCheck = MY_HOST.substringBefore(":")
+//var portToCheck = MY_HOST.substringAfter(":").toInt()
+var ipAddressToCheck = "8.8.8.8"
+var portToCheck = 53
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
