@@ -11,7 +11,7 @@ android {
         applicationId = "com.galeopsis.pinger"
         minSdk = 24
         targetSdk = 33
-        versionCode = 1
+        versionCode = 2
         versionName = "1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
