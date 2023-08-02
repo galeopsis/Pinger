@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Pinger</string>
+    <string name="ip_address_label">IP address/DNS name</string>
+    <string name="port_label">Port</string>
+    <string name="save_button">Save</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="invalid_port_error">Incorrect port value: 1–65535</string>
+    <string name="port">port</string>
+    <string name="address">address:</string>
+    <string name="check">Check</string>
+    <string name="by_ip_or_name">by IP or name</string>
+    <string name="available">is available!</string>
+    <string name="not_available">is not available!</string>
+    <string name="exit">Exit</string>
+    <string name="settings">Settings</string>
+</resources>

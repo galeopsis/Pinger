@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Pinger</string>
+    <string name="ip_address_label">IP адрес/Имя DNS</string>
+    <string name="port_label">Порт</string>
+    <string name="save_button">Сохранить</string>
+    <string name="cancel_button">Отменить</string>
+    <string name="invalid_port_error">Некорректный порт: 1–65535</string>
+    <string name="port">порт</string>
+    <string name="address">адрес: </string>
+    <string name="check">Проверить</string>
+    <string name="by_ip_or_name">по IP или имени</string>
+    <string name="available">доступен!</string>
+    <string name="not_available">не доступен!</string>
+    <string name="exit">Выйти</string>
+    <string name="settings">Настройки</string>
+</resources>
