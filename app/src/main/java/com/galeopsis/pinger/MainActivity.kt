@@ -56,6 +56,7 @@ import java.net.InetSocketAddress
 import java.net.Socket
 import kotlin.system.exitProcess
 
+
 //var ipAddressToCheck = MY_HOST.substringBefore(":")
 //var portToCheck = MY_HOST.substringAfter(":").toInt()
 var ipAddressToCheck = "google.com"
