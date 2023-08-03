@@ -41,18 +41,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
-import com.galeopsis.pinger.BuildConfig.MY_HOST
+import androidx.core.content.ContextCompat
 import com.galeopsis.pinger.ui.theme.PingerTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -226,8 +226,8 @@ fun MyButton() {
         Text(
             text = "$ipAddressToCheck: $portToCheck",
             modifier = Modifier
-                .padding(top = 12.dp) // Add a 12 dp margin to the top
-                .align(Alignment.TopCenter),
+                .padding(top = 84.dp)
+                .align(Alignment.Center),
             style = TextStyle(
                 color = buttonColor,
                 fontSize = 16.sp,
@@ -257,13 +257,13 @@ fun MyButton() {
                                     + ":" + portToCheck + "] " + getStringResource(context, R.string.not_available)
                         )
                     }
-                    buttonColor = if (isAvailable) Color.Green else Color.Red
+                    buttonColor = if (isAvailable) Color(0xFF499C54) else Color.Red
                 }
             }
         ) {
             Text(
                 stringResource(R.string.check),
-                color = buttonColor
+                color = Color.Black
             )
         }
         LaunchedEffect(buttonColor) {
@@ -272,8 +272,6 @@ fun MyButton() {
         }
     }
 }
-
-
 
 fun showToast(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
