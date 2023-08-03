@@ -42,9 +42,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
+import androidx.compose.ui.unit.sp
 import com.galeopsis.pinger.BuildConfig.MY_HOST
 import com.galeopsis.pinger.ui.theme.PingerTheme
 import kotlinx.coroutines.Dispatchers
@@ -215,6 +222,24 @@ fun MyButton() {
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        // Display the current host and port above the button
+        Text(
+            text = "$ipAddressToCheck: $portToCheck",
+            modifier = Modifier.align(Alignment.TopCenter),
+            style = TextStyle(
+                color = buttonColor,
+                fontSize = 16.sp,
+                fontFamily = FontFamily.Monospace,
+                fontWeight = FontWeight.W800,
+                fontStyle = FontStyle.Normal,
+                letterSpacing = 0.5.em,
+                background = Color.LightGray
+            )
+//            style = MaterialTheme.typography.titleMedium,
+//            modifier = Modifier.align(Alignment.TopCenter),
+//            color = buttonColor
+        )
+
         Button(
             onClick = {
                 coroutineScope.launch {
@@ -248,6 +273,7 @@ fun MyButton() {
         }
     }
 }
+
 
 
 fun showToast(context: Context, message: String) {
