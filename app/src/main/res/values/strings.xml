@@ -7,7 +7,7 @@
     <string name="invalid_port_error">Incorrect port value: 1–65535</string>
     <string name="port">port</string>
     <string name="address">address:</string>
-    <string name="check">Check</string>
+    <string name="check">Check host</string>
     <string name="by_ip_or_name">by IP or name</string>
     <string name="available">is available!</string>
     <string name="not_available">is not available!</string>

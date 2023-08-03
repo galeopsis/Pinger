@@ -29,6 +29,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -47,6 +48,7 @@ import androidx.compose.ui.unit.dp
 import com.galeopsis.pinger.BuildConfig.MY_HOST
 import com.galeopsis.pinger.ui.theme.PingerTheme
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.IOException
@@ -54,10 +56,10 @@ import java.net.InetSocketAddress
 import java.net.Socket
 import kotlin.system.exitProcess
 
-var ipAddressToCheck = MY_HOST.substringBefore(":")
-var portToCheck = MY_HOST.substringAfter(":").toInt()
-//var ipAddressToCheck = "8.8.8.8"
-//var portToCheck = 53
+//var ipAddressToCheck = MY_HOST.substringBefore(":")
+//var portToCheck = MY_HOST.substringAfter(":").toInt()
+var ipAddressToCheck = "google.com"
+var portToCheck = 80
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -198,9 +200,11 @@ private fun ShowSettingsDialog(onDismiss: () -> Unit) {
         }
     )
 }
+
 @Composable
 fun MyButton() {
     var isAvailable by remember { mutableStateOf(false) }
+    var buttonColor by remember { mutableStateOf(Color.Black) }
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
 
@@ -210,24 +214,40 @@ fun MyButton() {
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        Button(onClick = {
-            coroutineScope.launch {
-                isAvailable = checkIpAddress(ipAddressToCheck, portToCheck)
-                Log.d("testComposer", isAvailable.toString())
-                if (isAvailable) {
-                    showToast(context, getStringResource(context, R.string.address) + " [" + ipAddressToCheck
-                            + ":" + portToCheck + "] " + getStringResource(context, R.string.available))
-                } else {
-                    showToast(context, getStringResource(context, R.string.address) + " [" + ipAddressToCheck
-                            + ":" + portToCheck + "] " + getStringResource(context, R.string.not_available))
+        Button(
+            onClick = {
+                coroutineScope.launch {
+                    isAvailable = checkIpAddress(ipAddressToCheck, portToCheck)
+                    Log.d("testComposer", isAvailable.toString())
+                    if (isAvailable) {
+                        showToast(
+                            context,
+                            getStringResource(context, R.string.address) + " [" + ipAddressToCheck
+                                    + ":" + portToCheck + "] " + getStringResource(context, R.string.available)
+                        )
+                    } else {
+                        showToast(
+                            context,
+                            getStringResource(context, R.string.address) + " [" + ipAddressToCheck
+                                    + ":" + portToCheck + "] " + getStringResource(context, R.string.not_available)
+                        )
+                    }
+                    buttonColor = if (isAvailable) Color.Green else Color.Red
                 }
             }
-        }) {
-            Text(stringResource(R.string.check) + " ", color = Color.Magenta)
-            Text(stringResource(R.string.by_ip_or_name), color = Color.Black)
+        ) {
+            Text(
+                stringResource(R.string.check),
+                color = buttonColor
+            )
+        }
+        LaunchedEffect(buttonColor) {
+            delay(1500L) // 1.5 seconds delay
+            buttonColor = Color.Black // Revert color back to the original state
         }
     }
 }
+
 
 fun showToast(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
