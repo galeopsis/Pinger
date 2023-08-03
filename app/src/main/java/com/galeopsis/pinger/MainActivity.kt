@@ -72,6 +72,12 @@ var portToCheck = 80
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Read the host settings from SharedPreferences
+        val sharedPref = getSharedPreferences("MyHostPrefs", Context.MODE_PRIVATE)
+        ipAddressToCheck = sharedPref.getString("IP_ADDRESS", "google.com") ?: "google.com"
+        portToCheck = sharedPref.getInt("PORT", 80)
+
         setContent {
             PingerTheme {
                 Surface(
@@ -129,6 +135,7 @@ fun MySettingsButton() {
         }
     }
 }
+
 //w/o checks
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -185,8 +192,10 @@ private fun ShowSettingsDialog(onDismiss: () -> Unit) {
                     } else {
                         showToast(context, getStringResource(context, R.string.invalid_port_error))
                     }
-                    // Optionally, you can persist the IP address and port using SharedPreferences here.
-                    // saveIpAndPortToSharedPreferences(ipAddress, port)
+
+                    // Save the host settings to SharedPreferences
+                    saveHostSettingsToSharedPreferences(context, ipAddressToCheck, portToCheck)
+
                     // Close the dialog
                     onDismiss()
                     keyboardController?.hide()
@@ -270,6 +279,15 @@ fun MyButton() {
             delay(1500L) // 1.5 seconds delay
             buttonColor = Color.Black // Revert color back to the original state
         }
+    }
+}
+
+fun saveHostSettingsToSharedPreferences(context: Context, ipAddress: String, port: Int) {
+    val sharedPref = context.getSharedPreferences("MyHostPrefs", Context.MODE_PRIVATE)
+    with(sharedPref.edit()) {
+        putString("IP_ADDRESS", ipAddress)
+        putInt("PORT", port)
+        apply()
     }
 }
 
