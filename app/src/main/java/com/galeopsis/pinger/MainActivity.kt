@@ -225,7 +225,9 @@ fun MyButton() {
         // Display the current host and port above the button
         Text(
             text = "$ipAddressToCheck: $portToCheck",
-            modifier = Modifier.align(Alignment.TopCenter),
+            modifier = Modifier
+                .padding(top = 12.dp) // Add a 12 dp margin to the top
+                .align(Alignment.TopCenter),
             style = TextStyle(
                 color = buttonColor,
                 fontSize = 16.sp,
@@ -235,9 +237,6 @@ fun MyButton() {
                 letterSpacing = 0.5.em,
                 background = Color.LightGray
             )
-//            style = MaterialTheme.typography.titleMedium,
-//            modifier = Modifier.align(Alignment.TopCenter),
-//            color = buttonColor
         )
 
         Button(
