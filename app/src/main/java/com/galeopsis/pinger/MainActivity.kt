@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -38,6 +39,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
@@ -218,22 +220,19 @@ private fun ShowSettingsDialog(onDismiss: () -> Unit) {
 @Composable
 fun MyButton() {
     var isAvailable by remember { mutableStateOf(false) }
-    var buttonColor by remember { mutableStateOf(Color.Black) }
+    var buttonColor by remember { mutableStateOf(Color.Yellow) }
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
 
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
+    // Use Column to arrange the text and button vertically
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxSize()
     ) {
         // Display the current host and port above the button
         Text(
             text = "$ipAddressToCheck: $portToCheck",
-            modifier = Modifier
-                .padding(top = 84.dp)
-                .align(Alignment.Center),
             style = TextStyle(
                 color = buttonColor,
                 fontSize = 16.sp,
@@ -241,43 +240,54 @@ fun MyButton() {
                 fontWeight = FontWeight.W800,
                 fontStyle = FontStyle.Normal,
                 letterSpacing = 0.5.em,
-                background = Color.LightGray
-            )
+            ),
+            modifier = Modifier
+                .padding(bottom = 16.dp)
+                .shadow(4.dp, shape = MaterialTheme.shapes.medium) // Add shadow effect
         )
 
-        Button(
-            onClick = {
-                coroutineScope.launch {
-                    isAvailable = checkIpAddress(ipAddressToCheck, portToCheck)
-                    Log.d("testComposer", isAvailable.toString())
-                    if (isAvailable) {
-                        showToast(
-                            context,
-                            getStringResource(context, R.string.address) + " [" + ipAddressToCheck
-                                    + ":" + portToCheck + "] " + getStringResource(context, R.string.available)
-                        )
-                    } else {
-                        showToast(
-                            context,
-                            getStringResource(context, R.string.address) + " [" + ipAddressToCheck
-                                    + ":" + portToCheck + "] " + getStringResource(context, R.string.not_available)
-                        )
-                    }
-                    buttonColor = if (isAvailable) Color(0xFF499C54) else Color.Red
-                }
-            }
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
         ) {
-            Text(
-                stringResource(R.string.check),
-                color = Color.Black
-            )
-        }
-        LaunchedEffect(buttonColor) {
-            delay(1500L) // 1.5 seconds delay
-            buttonColor = Color.Black // Revert color back to the original state
+            Button(
+                onClick = {
+                    coroutineScope.launch {
+                        isAvailable = checkIpAddress(ipAddressToCheck, portToCheck)
+                        Log.d("testComposer", isAvailable.toString())
+                        if (isAvailable) {
+                            showToast(
+                                context,
+                                getStringResource(context, R.string.address) + " [" + ipAddressToCheck
+                                        + ":" + portToCheck + "] " + getStringResource(context, R.string.available)
+                            )
+                        } else {
+                            showToast(
+                                context,
+                                getStringResource(context, R.string.address) + " [" + ipAddressToCheck
+                                        + ":" + portToCheck + "] " + getStringResource(context, R.string.not_available)
+                            )
+                        }
+                        buttonColor = if (isAvailable) Color(0xFF499C54) else Color.Red
+                    }
+                }
+            ) {
+                Text(
+                    stringResource(R.string.check),
+                    color = Color.Magenta
+                )
+            }
+            LaunchedEffect(buttonColor) {
+                delay(1500L) // 1.5 seconds delay
+                buttonColor = Color.Yellow // Revert color back to the original state
+            }
         }
     }
 }
+
+
 
 fun saveHostSettingsToSharedPreferences(context: Context, ipAddress: String, port: Int) {
     val sharedPref = context.getSharedPreferences("MyHostPrefs", Context.MODE_PRIVATE)
