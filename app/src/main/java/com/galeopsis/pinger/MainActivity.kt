@@ -122,7 +122,7 @@ fun MySettingsButton() {
             Icon(
                 imageVector = Icons.Default.Settings,
                 contentDescription = stringResource(R.string.settings),
-                tint = Color.Green
+                tint = Color(0xFF499C54)
             )
         }
 
@@ -270,7 +270,7 @@ fun MyButton() {
                                         + ":" + portToCheck + "] " + getStringResource(context, R.string.not_available)
                             )
                         }
-                        buttonColor = if (isAvailable) Color(0xFF499C54) else Color.Red
+                        buttonColor = if (isAvailable) Color.Green else Color.Red
                     }
                 }
             ) {
@@ -324,7 +324,7 @@ fun ExitButton() {
             Icon(
                 imageVector = Icons.Default.ExitToApp,
                 contentDescription = stringResource(R.string.exit),
-                tint = Color.Green
+                tint = Color(0xFF499C54)
             )
         }
     }
