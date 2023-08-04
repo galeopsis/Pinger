@@ -260,7 +260,7 @@ fun MyButton() {
                                         + ":" + portToCheck + "] " + getStringResource(context, R.string.not_available)
                             )
                         }
-                        buttonColor = if (isAvailable) Color(0xFF499C54) else Color.Red
+                        buttonColor = if (isAvailable) Color.Green else Color.Red
                     }
                 }
             ) {
