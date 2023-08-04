@@ -45,13 +45,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import com.galeopsis.pinger.ui.theme.PingerTheme
 import kotlinx.coroutines.Dispatchers
@@ -63,8 +59,6 @@ import java.net.InetSocketAddress
 import java.net.Socket
 import kotlin.system.exitProcess
 
-//var ipAddressToCheck = MY_HOST.substringBefore(":")
-//var portToCheck = MY_HOST.substringAfter(":").toInt()
 var ipAddressToCheck = "google.com"
 var portToCheck = 80
 
@@ -236,13 +230,9 @@ fun MyButton() {
             style = TextStyle(
                 color = buttonColor,
                 fontSize = 16.sp,
-                fontFamily = FontFamily.Monospace,
-                fontWeight = FontWeight.W800,
-                fontStyle = FontStyle.Normal,
-                letterSpacing = 0.5.em,
+                background = Color(0xFF00668B)
             ),
             modifier = Modifier
-                .padding(bottom = 16.dp)
                 .shadow(4.dp, shape = MaterialTheme.shapes.medium) // Add shadow effect
         )
 
@@ -270,7 +260,7 @@ fun MyButton() {
                                         + ":" + portToCheck + "] " + getStringResource(context, R.string.not_available)
                             )
                         }
-                        buttonColor = if (isAvailable) Color.Green else Color.Red
+                        buttonColor = if (isAvailable) Color(0xFF499C54) else Color.Red
                     }
                 }
             ) {

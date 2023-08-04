@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.galeopsis.pinger"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.galeopsis.pinger"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 2
         versionName = "1.5"
 
@@ -18,14 +18,6 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-    }
-
-    buildFeatures {
-        buildConfig = true
-    }
-
-    buildTypes.forEach { buildType ->
-        buildType.buildConfigField("String", "MY_HOST", "\"171.33.245.169:21\"")
     }
 
     buildTypes {
