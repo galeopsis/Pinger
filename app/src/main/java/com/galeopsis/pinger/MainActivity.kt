@@ -276,7 +276,7 @@ fun MyButton() {
             ) {
                 Text(
                     stringResource(R.string.check),
-                    color = Color.Magenta
+                    color = Color.White
                 )
             }
             LaunchedEffect(buttonColor) {
