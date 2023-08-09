@@ -255,14 +255,12 @@ fun MyButton() {
                         if (isAvailable) {
                             showToast(
                                 context,
-                                getStringResource(context, R.string.address) + " [" + ipAddressToCheck
-                                        + ":" + portToCheck + "] " + getStringResource(context, R.string.available)
+                                getStringResource(context, R.string.available)
                             )
                         } else {
                             showToast(
                                 context,
-                                getStringResource(context, R.string.address) + " [" + ipAddressToCheck
-                                        + ":" + portToCheck + "] " + getStringResource(context, R.string.not_available)
+                                getStringResource(context, R.string.not_available)
                             )
                         }
                         buttonColor = if (isAvailable) Color.Green else Color.Red

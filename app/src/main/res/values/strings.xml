@@ -9,8 +9,8 @@
     <string name="address">address:</string>
     <string name="check">Check host</string>
     <string name="by_ip_or_name">by IP or name</string>
-    <string name="available">is available!</string>
-    <string name="not_available">is not available!</string>
+    <string name="available">Host is available!</string>
+    <string name="not_available">Host is not available!</string>
     <string name="exit">Exit</string>
     <string name="settings">Settings</string>
 </resources>

@@ -9,8 +9,8 @@
     <string name="address">адрес: </string>
     <string name="check">Проверить хост</string>
     <string name="by_ip_or_name">по IP или имени</string>
-    <string name="available">доступен!</string>
-    <string name="not_available">не доступен!</string>
+    <string name="available">Хост доступен!</string>
+    <string name="not_available">Хост не доступен!</string>
     <string name="exit">Выйти</string>
     <string name="settings">Настройки</string>
 </resources>
