@@ -161,7 +161,7 @@ private fun ShowSettingsDialog(onDismiss: () -> Unit) {
                 )
 
                 OutlinedTextField(
-                    value = dialogData.value.second.toString(),
+                    value = if (dialogData.value.second == 0) "" else dialogData.value.second.toString(),
                     onValueChange = {
                         dialogData.value = dialogData.value.copy(second = it.toIntOrNull() ?: 0)
                     },
