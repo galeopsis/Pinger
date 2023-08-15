@@ -311,6 +311,7 @@ fun ExitButton() {
     ) {
         IconButton(
             onClick = {
+                MainActivity().finish()
                 exitProcess(0)
             }
         ) {
